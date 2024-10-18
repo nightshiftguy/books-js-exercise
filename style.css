@@ -1,0 +1,19 @@
+body{
+    background-color: black;
+    color:white;
+    border-color: white;
+    font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue, helvetica, Cantarell, Ubuntu, roboto, noto, arial, sans-serif;
+}
+
+table, tr, td, th{
+    border:1px solid white;
+}
+
+table{
+    border-collapse: collapse;
+}
+
+table{
+    min-width:50%;
+    margin:0 auto;
+}
