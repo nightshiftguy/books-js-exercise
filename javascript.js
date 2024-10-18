@@ -28,11 +28,10 @@ function displayBooks(books){
     const tbl = document.createElement("table");
     const tblHead = document.createElement("thead");
     
-    let head_elements = ['title','author','pages','read'];
+    let head_elements = ['Title','Author','Pages','Read'];
     for (const element of head_elements){
         const cell = document.createElement("th");
-        console.log(element);
-        cell.textContent = element; //tu może być błąd może lepiej użyć create text node
+        cell.textContent = element;
         tblHead.appendChild(cell);
     }  
     
@@ -53,5 +52,10 @@ function displayBooks(books){
     
     document.body.appendChild(tbl);
 }
+
+library.push(new book('A Tale of Two Cities','Charles Dickens',123,true));
+library.push(new book('The Little Prince','Antonie de Saint Exupery',222,true));
+library.push(new book('The Alchemist','Paulo Coelho', 521, false));
+console.log(library);
 
 displayBooks(library);
