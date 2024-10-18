@@ -39,11 +39,17 @@ function displayBooks(books){
     
     for(const book of books){
         const row = document.createElement("tr");
-        for(book_property of [book.title,book.author,book.pages,book.read]){
+        for(book_property of [book.title,book.author,book.pages]){
             const cell = document.createElement("td");
             cell.textContent = book_property;
             row.appendChild(cell);
         }
+        const cell = document.createElement("td");
+        if(book.read)
+            cell.textContent = 'Yes';
+        else
+            cell.textContent = 'No';
+        row.appendChild(cell);
         tblBody.appendChild(row);
     }
     
