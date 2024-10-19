@@ -77,6 +77,7 @@ addBookBtn.addEventListener("click",(e)=>{
 dialog.addEventListener("close", (e)=>{
     e.preventDefault();
     let properties = Array.from(dialog.querySelectorAll("input")).map(input => input.value);
-    console.log(properties);
     addBookToLibrary(properties);
+
+    document.querySelector("form").reset();
 })
