@@ -9,7 +9,20 @@
 </head>
 <body>
     <div class="add-container">
-        <button class="add-book">ADD BOOK</button>
+        <button class="add-book">NEW BOOK</button>
     </div>
+    <dialog>
+        <form action="" method="dialog">
+            <h2>Add book details:</h2>
+
+            <div class="input-section">
+                <label for="title">Title:</label><input type="text" name="title" id="title" required>
+                <label for="author">Author:</label><input type="text" name="author" id="author" required>
+                <label for="pages">Number of pages:</label><input type="tel" name="pages" id="pages" required>
+            </div>
+            
+            <button type="submit" class="confirm-button">Confirm</button>
+        </form>
+    </dialog>
 </body>
 </html>
