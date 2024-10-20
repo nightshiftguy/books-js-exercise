@@ -85,7 +85,7 @@ function displayBooks(books){
 
 function addBookToLibrary(properties){
     library.push(new book(properties[0], properties[1], properties[2], false));
-    addRow(tblBody, library[library.length-1]);
+    addRow(tblBody, library[library.length-1], library.length-1);
 }
 
 library.push(new book('A Tale of Two Cities','Charles Dickens',123,true));
