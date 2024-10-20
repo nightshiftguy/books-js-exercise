@@ -42,7 +42,7 @@ function addRow(tblBody, book, rowNumber){
 function addReadButton(row, isBookRead, rowNumber){
     const cell = document.createElement("td");
     const button = document.createElement("button");
-    cell.setAttribute("style","text-align:center;");
+    cell.setAttribute("style","text-align:center; width:150px");
     button.setAttribute("style","width:70%; border-radius:5px;");
     button.setAttribute("number",rowNumber);
     if(isBookRead)
@@ -53,7 +53,6 @@ function addReadButton(row, isBookRead, rowNumber){
 
     button.addEventListener("click", (e)=>{
         let bookNumber = e.currentTarget.getAttribute("number");
-        console.log(bookNumber);
         library[bookNumber].read = !library[bookNumber].read;
         if(library[bookNumber].read)
             e.currentTarget.textContent = "Unread";
