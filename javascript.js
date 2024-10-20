@@ -22,19 +22,15 @@ function book(title, author, pages, read){
 
 function addRow(tblBody, book, rowNumber){
     const row = document.createElement("tr");
+    row.setAttribute("id","book"+rowNumber);
     for(book_property of [book.title,book.author,book.pages]){
         const cell = document.createElement("td");
         cell.textContent = book_property;
         row.appendChild(cell);
     }
-    const cell = document.createElement("td");
-    if(book.read)
-        cell.textContent = 'Yes';
-    else
-    cell.textContent = 'No';
-    row.appendChild(cell);
 
     addReadButton(row, book.read, rowNumber);
+    addDeleteButton(row, rowNumber);
 
     tblBody.appendChild(row);
 }
@@ -44,12 +40,11 @@ function addReadButton(row, isBookRead, rowNumber){
     const button = document.createElement("button");
     cell.setAttribute("style","text-align:center; width:150px");
     button.setAttribute("style","width:70%; border-radius:5px;");
-    button.setAttribute("number",rowNumber);
+    button.setAttribute("number", rowNumber);
     if(isBookRead)
         button.textContent = 'Unread';
     else
         button.textContent = 'Read';
-    button.attribute
 
     button.addEventListener("click", (e)=>{
         let bookNumber = e.currentTarget.getAttribute("number");
@@ -64,8 +59,26 @@ function addReadButton(row, isBookRead, rowNumber){
     row.appendChild(cell);
 }
 
+function addDeleteButton(row, rowNumber){
+    const cell = document.createElement("td");
+    const button = document.createElement("button");
+    cell.setAttribute("style","text-align:center; width:150px");
+    button.setAttribute("style","width:70%; border-radius:5px; background-color:red;");
+    button.setAttribute("number", rowNumber);
+    button.textContent = "Remove";
+
+    button.addEventListener("click", (e)=>{
+        let bookNumber = e.currentTarget.getAttribute("number");
+        library.splice(bookNumber,1);
+        document.getElementById("book"+bookNumber).remove();
+    })
+    
+    cell.appendChild(button);
+    row.appendChild(cell);
+}
+
 function displayBooks(books){   
-    let head_elements = ['Title','Author','Pages','Read'];
+    let head_elements = ['Title','Author','Pages','Read','Remove Book'];
     for (const element of head_elements){
         const cell = document.createElement("th");
         cell.textContent = element;
