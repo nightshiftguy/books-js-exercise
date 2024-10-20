@@ -38,8 +38,8 @@ function addRow(tblBody, book, rowNumber){
 function addReadButton(row, isBookRead, rowNumber){
     const cell = document.createElement("td");
     const button = document.createElement("button");
-    cell.setAttribute("style","text-align:center; width:150px");
-    button.setAttribute("style","width:70%; border-radius:5px;");
+    cell.setAttribute("style","text-align:center;");
+    button.setAttribute("class","table-btn");
     button.setAttribute("number", rowNumber);
     if(isBookRead)
         button.textContent = 'Unread';
@@ -62,8 +62,8 @@ function addReadButton(row, isBookRead, rowNumber){
 function addDeleteButton(row, rowNumber){
     const cell = document.createElement("td");
     const button = document.createElement("button");
-    cell.setAttribute("style","text-align:center; width:150px");
-    button.setAttribute("style","width:70%; border-radius:5px; background-color:red;");
+    cell.setAttribute("style","text-align:center;");
+    button.setAttribute("class","remove-btn table-btn");
     button.setAttribute("number", rowNumber);
     button.textContent = "Remove";
 

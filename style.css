@@ -38,6 +38,19 @@ button:focus{
     outline:none;
 }
 
+.table-btn{
+    width:70%;
+    border-radius:5px;
+}
+
+.remove-btn{
+    background-color:rgb(179, 0, 0);
+}
+
+.remove-btn:hover{
+    background-color: rgb(138, 0, 0);
+}
+
 .add-container{
     width:100%;
     height:100px;
