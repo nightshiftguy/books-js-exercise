@@ -20,7 +20,7 @@ function book(title, author, pages, read){
   }
 }
 
-function addRow(tblBody, book){
+function addRow(tblBody, book, rowNumber){
     const row = document.createElement("tr");
     for(book_property of [book.title,book.author,book.pages]){
         const cell = document.createElement("td");
@@ -34,7 +34,35 @@ function addRow(tblBody, book){
     cell.textContent = 'No';
     row.appendChild(cell);
 
+    addReadButton(row, book.read, rowNumber);
+
     tblBody.appendChild(row);
+}
+
+function addReadButton(row, isBookRead, rowNumber){
+    const cell = document.createElement("td");
+    const button = document.createElement("button");
+    cell.setAttribute("style","text-align:center;");
+    button.setAttribute("style","width:70%; border-radius:5px;");
+    button.setAttribute("number",rowNumber);
+    if(isBookRead)
+        button.textContent = 'Unread';
+    else
+        button.textContent = 'Read';
+    button.attribute
+
+    button.addEventListener("click", (e)=>{
+        let bookNumber = e.currentTarget.getAttribute("number");
+        console.log(bookNumber);
+        library[bookNumber].read = !library[bookNumber].read;
+        if(library[bookNumber].read)
+            e.currentTarget.textContent = "Unread";
+        else
+            e.currentTarget.textContent = "Read";
+    })
+    
+    cell.appendChild(button);
+    row.appendChild(cell);
 }
 
 function displayBooks(books){   
@@ -45,8 +73,8 @@ function displayBooks(books){
         tblHead.appendChild(cell);
     }  
     
-    for(const book of books){
-        addRow(tblBody, book);
+    for(i in books){
+        addRow(tblBody, books[i], i);
     }
     
     tbl.appendChild(tblHead);
@@ -81,3 +109,4 @@ dialog.addEventListener("close", (e)=>{
 
     document.querySelector("form").reset();
 })
+
