@@ -1,16 +1,18 @@
 const library = [];
+let currentId = 0;
 
 const tbl = document.createElement("table");
 const tblHead = document.createElement("thead");
 const tblBody = document.createElement("tbody");
 
 function book(title, author, pages, read){
-  this.title= title;
-  this.author=author;
-  this.pages=pages;
-  this.read=read;
+    this.title= title;
+    this.author=author;
+    this.pages=pages;
+    this.read=read;
+    this.id=currentId++;
 
-  this.info= function info(){
+    this.info= function info(){
     let message=`${this.title} ${this.author}, ${this.pages} pages, `
     if(read)
         message+="read";
@@ -20,36 +22,36 @@ function book(title, author, pages, read){
   }
 }
 
-function addRow(tblBody, book, rowNumber){
+function addRow(tblBody, book){
     const row = document.createElement("tr");
-    row.setAttribute("id","book"+rowNumber);
+    row.setAttribute("id","book"+book.id);
     for(book_property of [book.title,book.author,book.pages]){
         const cell = document.createElement("td");
         cell.textContent = book_property;
         row.appendChild(cell);
     }
 
-    addReadButton(row, book.read, rowNumber);
-    addDeleteButton(row, rowNumber);
+    addReadButton(row, book.read, book.id);
+    addDeleteButton(row, book.id);
 
     tblBody.appendChild(row);
 }
 
-function addReadButton(row, isBookRead, rowNumber){
+function addReadButton(row, isBookRead, bookId){
     const cell = document.createElement("td");
     const button = document.createElement("button");
     cell.setAttribute("style","text-align:center;");
     button.setAttribute("class","table-btn");
-    button.setAttribute("number", rowNumber);
+    button.setAttribute("book-id", bookId);
     if(isBookRead)
         button.textContent = 'Unread';
     else
         button.textContent = 'Read';
 
     button.addEventListener("click", (e)=>{
-        let bookNumber = e.currentTarget.getAttribute("number");
-        library[bookNumber].read = !library[bookNumber].read;
-        if(library[bookNumber].read)
+        let id = parseInt(e.currentTarget.getAttribute("book-id"));
+        library.find(book => book.id === id).read = !library.find(book => book.id === id).read;
+        if(library.find(book => book.id === id).read)
             e.currentTarget.textContent = "Unread";
         else
             e.currentTarget.textContent = "Read";
@@ -59,18 +61,18 @@ function addReadButton(row, isBookRead, rowNumber){
     row.appendChild(cell);
 }
 
-function addDeleteButton(row, rowNumber){
+function addDeleteButton(row, bookId){
     const cell = document.createElement("td");
     const button = document.createElement("button");
     cell.setAttribute("style","text-align:center;");
     button.setAttribute("class","remove-btn table-btn");
-    button.setAttribute("number", rowNumber);
+    button.setAttribute("book-id", bookId);
     button.textContent = "Remove";
 
     button.addEventListener("click", (e)=>{
-        let bookNumber = e.currentTarget.getAttribute("number");
-        library.splice(bookNumber,1);
-        document.getElementById("book"+bookNumber).remove();
+        let id = parseInt(e.currentTarget.getAttribute("book-id"));
+        library.splice(library.findIndex(book => book.id === id),1);
+        document.getElementById("book"+id).remove();
     })
     
     cell.appendChild(button);
@@ -97,7 +99,7 @@ function displayBooks(books){
 
 function addBookToLibrary(properties){
     library.push(new book(properties[0], properties[1], properties[2], false));
-    addRow(tblBody, library[library.length-1], library.length-1);
+    addRow(tblBody, library[library.length-1]);
 }
 
 library.push(new book('A Tale of Two Cities','Charles Dickens',123,true));
@@ -121,4 +123,3 @@ dialog.addEventListener("close", (e)=>{
 
     document.querySelector("form").reset();
 })
-
