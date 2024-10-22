@@ -1,15 +1,15 @@
 body{
     margin:0;
     padding:0;
-    --bg-clr:black;
-    --clr:white;
-    --second-bg-clr:lightgray;
+    --bg-clr:#0a0d16;
+    --clr:#f1f7f2;
+    --second-bg-clr:#516354;
     --second-clr:black;
-    --btn-clr:blue;
-    --btn-clr2:rgb(0, 0, 223);
+    --btn-clr:#00333d;
+    --btn-clr2:#005566;
     background-color: var(--bg-clr);
-    color:white;
-    border-color: white;
+    color:var(--clr);
+    border-color: var(--clr);
     font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue, helvetica, Cantarell, Ubuntu, roboto, noto, arial, sans-serif;
 }
 
@@ -39,7 +39,8 @@ button:focus{
 }
 
 .table-btn{
-    width:70%;
+    width:100px;
+    height:1.7rem;
     border-radius:5px;
 }
 
@@ -71,7 +72,8 @@ button:focus{
 }
 
 table, tr, td, th{
-    border:1px solid white;
+    border:1px solid var(--clr);
+    color:var(--clr);
 }
 
 table{
@@ -131,12 +133,6 @@ form input:focus{
 form input:user-invalid{
     border-color:rgb(255, 0, 0);
     background-color: rgb(255, 224, 224);
-}
-
-form > button{
-    width:50%;
-    padding:10px 20px;
-    border-radius: 10px;
 }
 
 .input-section{
