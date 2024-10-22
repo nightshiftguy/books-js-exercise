@@ -49,12 +49,11 @@ function addReadButton(row, isBookRead, bookId){
         button.textContent = 'Read';
 
     button.addEventListener("click", (e)=>{
-        let id = parseInt(e.currentTarget.getAttribute("book-id"));
-        library.find(book => book.id === id).read = !library.find(book => book.id === id).read;
-        if(library.find(book => book.id === id).read)
-            e.currentTarget.textContent = "Unread";
-        else
-            e.currentTarget.textContent = "Read";
+        const id = parseInt(e.currentTarget.getAttribute("book-id"));
+        let bookIndex = library.findIndex(book => book.id === id);
+        let book = library[bookIndex];
+        book.read = !book.read;
+        e.currentTarget.textContent = book.read ? "Unread" : "Read";
     })
     
     cell.appendChild(button);
@@ -70,7 +69,7 @@ function addDeleteButton(row, bookId){
     button.textContent = "Remove";
 
     button.addEventListener("click", (e)=>{
-        let id = parseInt(e.currentTarget.getAttribute("book-id"));
+        const id = parseInt(e.currentTarget.getAttribute("book-id"));
         library.splice(library.findIndex(book => book.id === id),1);
         document.getElementById("book"+id).remove();
     })
@@ -80,7 +79,7 @@ function addDeleteButton(row, bookId){
 }
 
 function displayBooks(books){   
-    let head_elements = ['Title','Author','Pages','Read','Remove Book'];
+    const head_elements = ['Title','Author','Pages','Read','Remove Book'];
     for (const element of head_elements){
         const cell = document.createElement("th");
         cell.textContent = element;
@@ -91,8 +90,7 @@ function displayBooks(books){
         addRow(tblBody, books[i], i);
     }
     
-    tbl.appendChild(tblHead);
-    tbl.appendChild(tblBody);
+    tbl.append(tblHead, tblBody);
 
     document.body.appendChild(tbl);
 }
