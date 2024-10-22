@@ -116,8 +116,11 @@ addBookBtn.addEventListener("click",(e)=>{
 
 dialog.addEventListener("close", (e)=>{
     e.preventDefault();
+    document.querySelector("form").reset();
+})
+
+confirmBtn.addEventListener("click",()=>{
     let properties = Array.from(dialog.querySelectorAll("input")).map(input => input.value);
     addBookToLibrary(properties);
-
-    document.querySelector("form").reset();
+    dialog.close();
 })

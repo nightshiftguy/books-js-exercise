@@ -2,7 +2,7 @@ body{
     margin:0;
     padding:0;
     --bg-clr:#0a0d16;
-    --clr:#f1f7f2;
+    --clr:#eef7ef;
     --second-bg-clr:#516354;
     --second-clr:black;
     --btn-clr:#00333d;
@@ -100,6 +100,7 @@ th, td{
 dialog{
     border-radius: 20px;
     background-color: var(--second-bg-clr);
+    color:var(--clr);
 }
 
 dialog::backdrop{
@@ -139,4 +140,9 @@ form input:user-invalid{
     display: grid;
     grid-template-columns: max-content 1fr;
     gap:10px 20px;
+}
+
+.confirm-button{
+    padding:10px 20px;
+    border-radius:5px;
 }
