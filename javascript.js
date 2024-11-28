@@ -5,14 +5,16 @@ const tbl = document.createElement("table");
 const tblHead = document.createElement("thead");
 const tblBody = document.createElement("tbody");
 
-function book(title, author, pages, read){
-    this.title= title;
-    this.author=author;
-    this.pages=pages;
-    this.read=read;
-    this.id=currentId++;
+class book{
+    constructor(title, author, pages, read){
+        this.title=title;
+        this.author=author;
+        this.pages=pages;
+        this.read=read;
+        this.id=currentId++;
+    }
 
-    this.info= function info(){
+    info(){
     let message=`${this.title} ${this.author}, ${this.pages} pages, `
     if(read)
         message+="read";
