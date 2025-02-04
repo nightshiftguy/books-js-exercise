@@ -121,8 +121,15 @@ dialog.addEventListener("close", (e)=>{
     document.querySelector("form").reset();
 })
 
-confirmBtn.addEventListener("click",()=>{
+confirmBtn.addEventListener("click",(e)=>{
     let properties = Array.from(dialog.querySelectorAll("input")).map(input => input.value);
+
+    for(item of properties)
+        if(item=="")    return;
+    if(isNaN(properties[2])){
+        e.preventDefault();
+        return;
+    }
     addBookToLibrary(properties);
     dialog.close();
 })
