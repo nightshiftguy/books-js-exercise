@@ -110,6 +110,7 @@ displayBooks(library);
 
 const addBookBtn = document.querySelector(".add-book");
 const dialog = document.querySelector("dialog");
+const inputSection = document.querySelector(".input-section")
 const confirmBtn = document.querySelector(".confirm-button");
 
 addBookBtn.addEventListener("click",(e)=>{
@@ -122,14 +123,33 @@ dialog.addEventListener("close", (e)=>{
 })
 
 confirmBtn.addEventListener("click",(e)=>{
-    let properties = Array.from(dialog.querySelectorAll("input")).map(input => input.value);
+    e.preventDefault();
+    let properties = Array.from(inputSection.querySelectorAll("input"));
+    let isFormValid=true;
+    for(item of properties){
+        const errorMessage=document.querySelector(`#${item.id}-error`);
+        errorMessage.textContent=item.validationMessage;
+        if(item.validity.valueMissing){
+            isFormValid=false;
+        }
+    }
+    if(isFormValid===false) {return;};
 
-    for(item of properties)
-        if(item=="")    return;
-    if(isNaN(properties[2])){
-        e.preventDefault();
+    if(isNaN(properties[2].value)){
+        const errorMessage=document.querySelector(`#${properties[2].id}-error`);
+        properties[2].setCustomValidity("Please use number")
+        errorMessage.textContent=item.validationMessage;
         return;
     }
-    addBookToLibrary(properties);
+    
+    if(properties[2].value<1){
+        const errorMessage=document.querySelector(`#${properties[2].id}-error`);
+        properties[2].setCustomValidity("Number must be greater than 0")
+        errorMessage.textContent=item.validationMessage;
+        return;
+    }
+    if(isFormValid===false) {return};
+
+    addBookToLibrary(properties.map(input=>input.value));
     dialog.close();
 })

@@ -140,7 +140,7 @@ form input:focus{
     background-color: rgb(234, 235, 240);
 }
 
-form input:user-invalid{
+form input:invalid{
     border-color:rgb(255, 0, 0);
     background-color: rgb(255, 224, 224);
 }
